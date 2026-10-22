@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aura.local/contracts/storage.schema.json",
+  "title": "AURA local document v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "preferences",
+    "dailyLogEntries",
+    "expenses",
+    "workoutSessions",
+    "cardioSessions",
+    "weightEntries",
+    "studySessions",
+    "screenTimeEntries",
+    "goals",
+    "habits",
+    "learningResources"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "preferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["displayName", "currencySymbol", "weightUnit"],
+      "properties": {
+        "displayName": { "type": "string" },
+        "currencySymbol": { "type": "string", "minLength": 1 },
+        "weightUnit": { "enum": ["kg", "lb"] }
+      }
+    },
+    "dailyLogEntries": { "type": "array", "items": { "$ref": "#/$defs/dailyLogEntry" } },
+    "expenses": { "type": "array", "items": { "$ref": "#/$defs/expense" } },
+    "workoutSessions": { "type": "array", "items": { "$ref": "#/$defs/workoutSession" } },
+    "cardioSessions": { "type": "array", "items": { "$ref": "#/$defs/cardioSession" } },
+    "weightEntries": { "type": "array", "items": { "$ref": "#/$defs/weightEntry" } },
+    "studySessions": { "type": "array", "items": { "$ref": "#/$defs/timedSession" } },
+    "screenTimeEntries": { "type": "array", "items": { "$ref": "#/$defs/timedSession" } },
+    "goals": { "type": "array", "items": { "$ref": "#/$defs/goal" } },
+    "habits": { "type": "array", "items": { "$ref": "#/$defs/habit" } },
+    "learningResources": { "type": "array", "items": { "$ref": "#/$defs/learningResource" } }
+  },
+  "$defs": {
+    "isoDate": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "isoDateTime": { "type": "string", "minLength": 4 },
+    "id": { "type": "string", "minLength": 1 },
+    "dailyLogEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text", "date", "category", "status", "createdAt", "updatedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "text": { "type": "string", "minLength": 1 },
+        "date": { "$ref": "#/$defs/isoDate" },
+        "category": { "enum": ["activity", "health", "plan", "learning", "other"] },
+        "status": { "enum": ["incomplete", "complete"] },
+        "createdAt": { "$ref": "#/$defs/isoDateTime" },
+        "updatedAt": { "$ref": "#/$defs/isoDateTime" }
+      }
+    },
+    "expense": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "description", "amount", "category", "date", "createdAt", "updatedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "description": { "type": "string", "minLength": 1 },
+        "amount": { "type": "number", "exclusiveMinimum": 0 },
+        "category": {
+          "enum": ["food", "transport", "shopping", "bills", "health", "education", "other"]
+        },
+        "date": { "$ref": "#/$defs/isoDate" },
+        "createdAt": { "$ref": "#/$defs/isoDateTime" },
+        "updatedAt": { "$ref": "#/$defs/isoDateTime" }
+      }
+    },
+    "exercise": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "sets", "repetitions", "weight", "weightUnit"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "sets": { "type": "integer", "minimum": 1 },
+        "repetitions": { "type": "integer", "minimum": 1 },
+        "weight": { "type": ["number", "null"], "minimum": 0 },
+        "weightUnit": { "type": ["string", "null"], "enum": ["kg", "lb", null] }
+      }
+    },
+    "workoutSession": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "date", "exercises", "createdAt", "updatedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "type": {
+          "enum": ["leg_day", "back_and_biceps", "chest_and_triceps", "shoulders"]
+        },
+        "date": { "$ref": "#/$defs/isoDate" },
+        "exercises": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/exercise" } },
+        "createdAt": { "$ref": "#/$defs/isoDateTime" },
+        "updatedAt": { "$ref": "#/$defs/isoDateTime" }
+      }
+    },
+    "cardioSession": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "date", "durationMinutes", "createdAt", "updatedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "type": { "enum": ["running", "skipping"] },
+        "date": { "$ref": "#/$defs/isoDate" },
+        "durationMinutes": { "type": "number", "exclusiveMinimum": 0 },
+        "createdAt": { "$ref": "#/$defs/isoDateTime" },
+        "updatedAt": { "$ref": "#/$defs/isoDateTime" }
+      }
+    },
+    "weightEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "value", "unit", "date", "createdAt", "updatedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "value": { "type": "number", "exclusiveMinimum": 0 },
+        "unit": { "enum": ["kg", "lb"] },
+        "date": { "$ref": "#/$defs/isoDate" },
+        "createdAt": { "$ref": "#/$defs/isoDateTime" },
+        "updatedAt": { "$ref": "#/$defs/isoDateTime" }
+      }
+    },
+    "timedSession": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "date", "durationMinutes", "note", "createdAt", "updatedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "date": { "$ref": "#/$defs/isoDate" },
+        "durationMinutes": { "type": "number", "exclusiveMinimum": 0 },
+        "note": { "type": "string" },
+        "createdAt": { "$ref": "#/$defs/isoDateTime" },
+        "updatedAt": { "$ref": "#/$defs/isoDateTime" }
+      }
+    },
+    "goal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "notes", "status", "createdAt", "updatedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "type": "string", "minLength": 1 },
+        "notes": { "type": "string" },
+        "status": { "enum": ["active", "completed"] },
+        "createdAt": { "$ref": "#/$defs/isoDateTime" },
+        "updatedAt": { "$ref": "#/$defs/isoDateTime" }
+      }
+    },
+    "habit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "completions", "createdAt", "updatedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "name": { "type": "string", "minLength": 1 },
+        "completions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/isoDate" },
+          "uniqueItems": true
+        },
+        "createdAt": { "$ref": "#/$defs/isoDateTime" },
+        "updatedAt": { "$ref": "#/$defs/isoDateTime" }
+      }
+    },
+    "learningResource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "theme",
+        "kind",
+        "url",
+        "destinationLabel",
+        "claimsCertificate",
+        "curated"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "title": { "type": "string", "minLength": 1 },
+        "theme": {
+          "enum": [
+            "confidence_communication",
+            "discipline_consistency",
+            "peace_focus",
+            "habits_character",
+            "mental_emotional",
+            "free_learning"
+          ]
+        },
+        "kind": { "enum": ["youtube", "course", "article"] },
+        "url": { "type": "string", "minLength": 8 },
+        "destinationLabel": { "type": "string", "minLength": 1 },
+        "claimsCertificate": { "type": "boolean" },
+        "curated": { "const": true }
+      }
+    }
+  }
+}

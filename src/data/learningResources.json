@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ted-body-language",
+    "title": "Your body language may shape who you are",
+    "theme": "confidence_communication",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/watch?v=Ks-_Mh1QhMc",
+    "destinationLabel": "YouTube",
+    "claimsCertificate": false,
+    "curated": true
+  },
+  {
+    "id": "atomic-habits-clear",
+    "title": "Atomic Habits — James Clear",
+    "theme": "discipline_consistency",
+    "kind": "article",
+    "url": "https://jamesclear.com/atomic-habits",
+    "destinationLabel": "jamesclear.com",
+    "claimsCertificate": false,
+    "curated": true
+  },
+  {
+    "id": "headspace-official",
+    "title": "Headspace — official YouTube channel",
+    "theme": "peace_focus",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/@headspace",
+    "destinationLabel": "YouTube",
+    "claimsCertificate": false,
+    "curated": true
+  },
+  {
+    "id": "crash-course-study",
+    "title": "Crash Course — Study Skills",
+    "theme": "habits_character",
+    "kind": "youtube",
+    "url": "https://www.youtube.com/playlist?list=PL8dPuuaLjXtN07o3TR46YecqiYi7AJe8c",
+    "destinationLabel": "YouTube",
+    "claimsCertificate": false,
+    "curated": true
+  },
+  {
+    "id": "who-mental-health",
+    "title": "WHO — Mental health",
+    "theme": "mental_emotional",
+    "kind": "article",
+    "url": "https://www.who.int/health-topics/mental-health",
+    "destinationLabel": "World Health Organization",
+    "claimsCertificate": false,
+    "curated": true
+  },
+  {
+    "id": "freecodecamp",
+    "title": "freeCodeCamp — learn to code (certificates available on the site)",
+    "theme": "free_learning",
+    "kind": "course",
+    "url": "https://www.freecodecamp.org/",
+    "destinationLabel": "freeCodeCamp",
+    "claimsCertificate": true,
+    "curated": true
+  },
+  {
+    "id": "cs50",
+    "title": "CS50: Introduction to Computer Science",
+    "theme": "free_learning",
+    "kind": "course",
+    "url": "https://cs50.harvard.edu/x/",
+    "destinationLabel": "Harvard CS50",
+    "claimsCertificate": true,
+    "curated": true
+  },
+  {
+    "id": "khan-academy",
+    "title": "Khan Academy",
+    "theme": "free_learning",
+    "kind": "course",
+    "url": "https://www.khanacademy.org/",
+    "destinationLabel": "Khan Academy",
+    "claimsCertificate": false,
+    "curated": true
+  }
+]

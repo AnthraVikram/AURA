@@ -1,0 +1,182 @@
+:root {
+  --bg: #05040a;
+  --bg-mid: #0b0914;
+  --bg-elev: rgba(16, 13, 28, 0.82);
+  --bg-soft: rgba(28, 22, 48, 0.9);
+  --stroke: rgba(168, 132, 255, 0.22);
+  --stroke-strong: rgba(176, 140, 255, 0.4);
+  --text: #f6f2ff;
+  --muted: #a89bbf;
+  --accent: #b57aff;
+  --accent-deep: #6d3dff;
+  --pink: #e889c8;
+  --blue: #7ec8ff;
+  --cyan: #6ee7ff;
+  --danger: #ff8a9a;
+  --ok: #8dffc1;
+  --radius: 18px;
+  --radius-sm: 12px;
+  --space: 16px;
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  --font: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --display: "Outfit", "Segoe UI", sans-serif;
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(900px 480px at 12% -8%, rgba(138, 80, 255, 0.22), transparent 55%),
+    radial-gradient(700px 420px at 92% 8%, rgba(90, 170, 255, 0.12), transparent 50%),
+    radial-gradient(600px 500px at 70% 100%, rgba(232, 137, 200, 0.08), transparent 55%),
+    var(--bg);
+}
+
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.45), transparent),
+    radial-gradient(1px 1px at 28% 72%, rgba(181, 122, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 63% 22%, rgba(255, 255, 255, 0.35), transparent),
+    radial-gradient(1px 1px at 81% 58%, rgba(126, 200, 255, 0.4), transparent),
+    radial-gradient(1px 1px at 44% 40%, rgba(255, 255, 255, 0.25), transparent);
+  opacity: 0.7;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  font-weight: 560;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.4em;
+}
+
+p {
+  margin: 0 0 0.6em;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: linear-gradient(180deg, #9b6dff, var(--accent-deep));
+  border: 0;
+  color: white;
+  border-radius: 999px;
+  padding: 9px 16px;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08) inset, 0 8px 24px rgba(109, 61, 255, 0.28);
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+button:hover {
+  filter: brightness(1.08);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+button.secondary {
+  background: rgba(28, 22, 48, 0.9);
+  border: 1px solid var(--stroke);
+  box-shadow: none;
+}
+
+button.icon-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+}
+
+input,
+select,
+textarea {
+  background: rgba(8, 6, 16, 0.65);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-sm);
+  padding: 9px 12px;
+  width: 100%;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+a {
+  color: var(--blue);
+}
+
+.empty {
+  color: var(--muted);
+}
+
+.incomplete {
+  border-left: 3px solid var(--pink);
+  padding-left: 8px;
+}
+
+.error {
+  color: var(--danger);
+}
+
+.card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 28%),
+    var(--bg-elev);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  padding: var(--space);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.page {
+  display: grid;
+  gap: 14px;
+}
+
+.page form,
+.page ul {
+  display: grid;
+  gap: 8px;
+}
+
+.page ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
